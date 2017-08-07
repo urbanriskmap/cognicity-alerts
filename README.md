@@ -47,3 +47,9 @@ Standing up Alerts Dev Environment
 - make calls to server /alerts endpoint to register a new user/location
 - make a call to the /cards endpoint to get a card ID and put a new report within 5km of registered alert location
 - console output of cognicity-notification-service will show alert issued
+
+##### TODO
+- cognicity-notification-service -> pg-promise connection to LISTEN/NOTIFY with reconnect options
+- cognicity-notification-service -> module to issue AWS SNS for alerts and replies
+- cognicity-schema -> change 'watchers' channel name to 'replies'
+- COMPUTE module
