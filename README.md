@@ -8,8 +8,10 @@ System is comprised of following components:
   - trigger performs spatial query using PostGIS extension to detect when new hazard reports are within specified distance of pre-registered alerting locations
   - issues alert using PostgreSQL NOTIFY
   - if multiple alerting locations are within range of new report, multiple NOTIFY alerts are issued
-  - alerts schema maintains a log of activity for each alert location as a JSONB object in the alerts.locations table
+  - alerts schema maintains a log of activity for each alert location as a JSONB object in the alerts.locations table.
+  - the activity log currently has not defined datatype - it is just free JSON
   - note that NOTIFY payloads are max of 8000 bytes. Thus, long logs will be truncated
+  - if a location's status is set to unsubscribed then the database will not trigger a NOTIFY for that location
 - MODULE in cogncity-notification service
   - receives NOTIFY alerts from database and processes to issue Amazon Web Services SNS notification
 - COMPUTE
@@ -36,3 +38,12 @@ NEW REPORT -> DATABASE (alerts schema) -> COGNICITY-NOTIFICATION -> SNS -> COMPU
 Server Endpoints
 ----------------
 Documented in the "alerts" branch of petabencana-docs. See https://github.com/urbanriskmap/petabencana-docs/tree/alerts
+
+Standing up Alerts Dev Environment
+----------------------------------
+- create new database from cognicity-schema user alerts branch of Git
+- stand-up cognicity-server using alerts branch, connected to above new database
+- stand-up cognicity-notification-service /alerts branch
+- make calls to server /alerts endpoint to register a new user/location
+- make a call to the /cards endpoint to get a card ID and put a new report within 5km of registered alert location
+- console output of cognicity-notification-service will show alert issued
