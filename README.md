@@ -32,3 +32,7 @@ HTTP POST -> SERVER /alerts -> DATABASE
 
 ### Issue Alert
 NEW REPORT -> DATABASE (alerts schema) -> COGNICITY-NOTIFICATION -> SNS -> COMPUTE -> REPLY LAMBDAS
+
+Server Endpoints
+----------------
+Documented in the "alerts" branch of petabencana-docs. See https://github.com/urbanriskmap/petabencana-docs/tree/alerts
