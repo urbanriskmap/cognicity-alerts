@@ -27,8 +27,8 @@ System is comprised of following components:
 Information Flow
 ----------------
 
-## Register user
+### Register user
 HTTP POST -> SERVER /alerts -> DATABASE
 
-## Issue Alert
+### Issue Alert
 NEW REPORT -> DATABASE (alerts schema) -> COGNICITY-NOTIFICATION -> SNS -> COMPUTE -> REPLY LAMBDAS
